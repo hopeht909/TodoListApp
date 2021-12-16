@@ -119,26 +119,5 @@ class TodoList: UITableViewController, TableViewDelegate {
             print(error.localizedDescription)
         }
     }
-    func updateCheckmark(at indexPath: Int) {
-        let context = getContext()
-        
-        // update the task item array
-        let request = NSFetchRequest<ItemsList>.init(entityName: "ItemsList")
-        
-        // query or filter
-        let predicate = NSPredicate.init(format: "checkmark = %d", false)
-        
-        request.predicate = predicate
-        do {
-            if let taskItem = try context.fetch(request).first {
-                taskItem.checkmark = true
-                try context.save()
-                getItems()
-                }
-            
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
+}
     
