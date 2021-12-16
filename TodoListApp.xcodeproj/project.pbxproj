@@ -16,8 +16,8 @@
 		841BF624276A20C10005199B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BF622276A20C10005199B /* LaunchScreen.storyboard */; };
 		841BF62C276B46140005199B /* AddTodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF62B276B46140005199B /* AddTodoList.swift */; };
 		841BF62E276B464C0005199B /* TodoListCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF62D276B464C0005199B /* TodoListCustomCell.swift */; };
-		841BF63D276B5A470005199B /* ItemsList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF63B276B5A470005199B /* ItemsList+CoreDataClass.swift */; };
-		841BF63E276B5A470005199B /* ItemsList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF63C276B5A470005199B /* ItemsList+CoreDataProperties.swift */; };
+		841BF641276B80FF0005199B /* ItemsList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF63F276B80FF0005199B /* ItemsList+CoreDataClass.swift */; };
+		841BF642276B80FF0005199B /* ItemsList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BF640276B80FF0005199B /* ItemsList+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +32,8 @@
 		841BF625276A20C10005199B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		841BF62B276B46140005199B /* AddTodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoList.swift; sourceTree = "<group>"; };
 		841BF62D276B464C0005199B /* TodoListCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCustomCell.swift; sourceTree = "<group>"; };
-		841BF63B276B5A470005199B /* ItemsList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsList+CoreDataClass.swift"; sourceTree = "<group>"; };
-		841BF63C276B5A470005199B /* ItemsList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		841BF63F276B80FF0005199B /* ItemsList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsList+CoreDataClass.swift"; sourceTree = "<group>"; };
+		841BF640276B80FF0005199B /* ItemsList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemsList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +50,8 @@
 		841BF608276A20C00005199B = {
 			isa = PBXGroup;
 			children = (
-				841BF63B276B5A470005199B /* ItemsList+CoreDataClass.swift */,
-				841BF63C276B5A470005199B /* ItemsList+CoreDataProperties.swift */,
+				841BF63F276B80FF0005199B /* ItemsList+CoreDataClass.swift */,
+				841BF640276B80FF0005199B /* ItemsList+CoreDataProperties.swift */,
 				841BF613276A20C00005199B /* TodoListApp */,
 				841BF612276A20C00005199B /* Products */,
 			);
@@ -159,8 +159,8 @@
 				841BF617276A20C00005199B /* SceneDelegate.swift in Sources */,
 				841BF61F276A20C00005199B /* TodoListApp.xcdatamodeld in Sources */,
 				841BF62C276B46140005199B /* AddTodoList.swift in Sources */,
-				841BF63E276B5A470005199B /* ItemsList+CoreDataProperties.swift in Sources */,
-				841BF63D276B5A470005199B /* ItemsList+CoreDataClass.swift in Sources */,
+				841BF642276B80FF0005199B /* ItemsList+CoreDataProperties.swift in Sources */,
+				841BF641276B80FF0005199B /* ItemsList+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

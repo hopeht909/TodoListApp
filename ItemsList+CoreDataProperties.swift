@@ -19,6 +19,7 @@ extension ItemsList {
     @NSManaged public var itemTitle: String?
     @NSManaged public var itemNotes: String?
     @NSManaged public var dueDate: String?
+    @NSManaged public var checkmark: Bool
 
 }
 

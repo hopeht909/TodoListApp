@@ -37,72 +37,61 @@ class TodoList: UITableViewController, TableViewDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListCell", for: indexPath) as! TodoListCustomCell
         
-        cell.itemTitle.text = itemsList[indexPath.row].itemTitle
-        cell.itemsNotes.text = itemsList[indexPath.row].itemNotes
-        cell.itemDueDate.text = itemsList[indexPath.row].dueDate
-        tableView.cellForRow(at: indexPath)?.accessoryType = .detailDisclosureButton
-    
-        return cell
-    }
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-            performSegue(withIdentifier: "AddEditItem" , sender: indexPath)
-        }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-    }
-    
-    func itemSaved(by controller: AddTodoList, with object: ItemsInfo, at indexPath: NSIndexPath?){
-        if let ip = indexPath {
-            
-            let items = itemsList[ip.row]
-            items.itemTitle = object.itemTitle
-            items.itemNotes = object.itemNotes
-            items.dueDate = object.Datee
+        let item = itemsList[indexPath.row]
+        
+        
+        cell.itemTitle.text = item.itemTitle
+        cell.itemsNotes.text = item.itemNotes
+        cell.itemDueDate.text = item.dueDate
+        
+        
+        if  item.checkmark == true {
+          
+         cell.accessoryType = .checkmark
             
         }
         else{
-            
-            let item = NSEntityDescription.insertNewObject(forEntityName: "ItemsList", into: getContext()) as! ItemsList
-            item.itemTitle = object.itemTitle
-            item.itemNotes = object.itemNotes
-            item.dueDate = object.Datee
-            
-            itemsList.append(item)
-            
+            cell.accessoryType = .none
         }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = itemsList[indexPath.row]
+        item.checkmark = true
+        
+        print(itemsList[indexPath.row])
+        saveItem()
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        
+        
+    }
+    
+    func itemSaved(by controller: AddTodoList, with object: ItemsInfo){
+        
+        let item = NSEntityDescription.insertNewObject(forEntityName: "ItemsList", into: getContext()) as! ItemsList
+        item.itemTitle = object.itemTitle
+        item.itemNotes = object.itemNotes
+        item.dueDate = object.Datee
+        item.checkmark = false
+        
+        itemsList.append(item)
+        print(item)
+        
         saveItem()
         
         tableView.reloadData()
         dismiss(animated: true, completion: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if sender is UIBarButtonItem {
-               let destination = segue.destination as! AddTodoList
-               destination.delegate = self
-               
-           }
-           
-           else if  sender is IndexPath   {
-               
-               let destination = segue.destination as! AddTodoList
-               destination.delegate = self
-       
-               let indexPath = sender as! NSIndexPath
-               if
-               let title = itemsList[indexPath.row].itemTitle,
-               let notes = itemsList[indexPath.row].itemNotes,
-               let date = itemsList[indexPath.row].dueDate
-               {
-                   
-                   let object = ItemsInfo.init(itemTitle: title, itemNotes: notes, Datee: date)
-              
-               destination.item = object
-               destination.indexPath = indexPath
-                   
-               }
-           }
-       }
+        
+        let destination = segue.destination as! AddTodoList
+        destination.delegate = self
+        
+        
+    }
     
     func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -130,5 +119,26 @@ class TodoList: UITableViewController, TableViewDelegate {
             print(error.localizedDescription)
         }
     }
-}
-
+    func updateCheckmark(at indexPath: Int) {
+        let context = getContext()
+        
+        // update the task item array
+        let request = NSFetchRequest<ItemsList>.init(entityName: "ItemsList")
+        
+        // query or filter
+        let predicate = NSPredicate.init(format: "checkmark = %d", false)
+        
+        request.predicate = predicate
+        do {
+            if let taskItem = try context.fetch(request).first {
+                taskItem.checkmark = true
+                try context.save()
+                getItems()
+                }
+            
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    

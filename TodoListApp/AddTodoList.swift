@@ -18,7 +18,7 @@ var Datee: String
 
 protocol TableViewDelegate: AnyObject{
 
-    func itemSaved(by controller: AddTodoList, with object: ItemsInfo, at indexPath: NSIndexPath?)
+    func itemSaved(by controller: AddTodoList, with object: ItemsInfo)
 }
 
 class AddTodoList: UIViewController {
@@ -35,9 +35,10 @@ class AddTodoList: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         itemTitleTF.text = item?.itemTitle
         itemNotesTF.text = item?.itemNotes
-      
+        
     }
 
     @IBAction func addItemBtnPressed(_ sender: UIButton) {
@@ -49,14 +50,12 @@ class AddTodoList: UIViewController {
        // Convert Date to String
        let date = dateFormatter.string(from: dueDate.date)
         
-        print(date)
-        
         if let title = itemTitleTF.text,
            let notes = itemNotesTF.text
             {
             
             let itemInfo = ItemsInfo.init(itemTitle: title, itemNotes: notes, Datee: date)
-            delegate?.itemSaved(by: self, with: itemInfo, at: indexPath)
+            delegate?.itemSaved(by: self, with: itemInfo)
             
         }
     }
